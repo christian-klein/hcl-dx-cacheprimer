@@ -79,3 +79,18 @@ Install Python requirements using
 ```
 pip install -r ./requirements.txt
 ```
+
+Now you can run the application.
+
+```
+(venv) cdk2128@docker:~/hcl-dx-cacheprimer$ python app.py
+*************** Cache Primer ***************
+ Target Server: http://localhost:10039/wps/portal
+ Retries: 5 Every: 2.0s
+--------------------------------------------
+http://localhost:10039/wps/portal/woodburnstudio/home/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1Mgo31wwkpiAJKG-AAjgZA_VFgJaaBlu4eRiZG_u5mji5AE9w9LB0NAgwMLAygCvCYUZAbYZDpqKgIALEKk_E!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
+http://localhost:10039/wps/portal/woodburnstudio/our-exhibitions/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1MHA31w8EKTAMt3T2MTIz83c0cXYAK3D0sHQ0CDAwsDPSjiNFvgAM4Eqkfj4Io_MaH60eBleDzASEzCnJDQyMMMh0BL6GB_g!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
+...
+http://localhost:10039/wps/portal/woodburnstudio/about-us/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1MXAz0w8EKTAMt3T2MTIz83c0cXYAK3D0sHQ0CDAwsDPSjiNFvgAM4Eqkfj4Io_MaH60eBleDzASEzCnJDQyMMMh0BEtV0xw!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
+(venv) cdk2128@docker:~/hcl-dx-cacheprimer$
+```
