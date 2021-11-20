@@ -24,7 +24,8 @@ Structure:
 ## Installation:
 This tool was written with Python 3.8.10 and the instructions assume a Linux machine, though it should work similarly on Mac and PC. 
 
-Install Python3 and create a virtual environment named venv
+### Install Python
+Install Python3 and apt install python3.x-venv and create a virtual environment named venv
 ```
 python3 -m venv venv 
 ```
@@ -38,6 +39,15 @@ You should now be see the virtual environment in front of your prompt.
 Python 3.8.10
 (venv) ~/hcl-dx-cacheprimer$
 ```
+### Install Chrome.
+
+```
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+
+### Install Chromedriver
 Next, download and extract the appropriate chromedriver from https://chromedriver.chromium.org/ to this directory.
 ```
 (venv) ~/GitHub/hcl-dx-cacheprimer$ ll
@@ -69,16 +79,3 @@ Install Python requirements using
 ```
 pip install -r ./requirements.txt
 ```
-
-<!-- 
- ##WSL2 (Ubuntu):
- ###Install chrome
- `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb`
- `sudo apt install ./google-chrome-stable_current_amd64.deb`
-
-###Install chromium
-
- Run XLaunch from the search bar
- Set display number to 0 and disable access control
-
-sudo apt-get install xvfb -->

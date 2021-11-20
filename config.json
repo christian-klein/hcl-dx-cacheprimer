@@ -1,8 +1,8 @@
 {
     "retries": "5",
     "wait": "2",
-    "protocol": "https",
-    "url": "porta.cklein.us",
+    "protocol": "http",
+    "url": "localhost:10039",
     "path": "/wps/portal",
     "pages": [
         "/woodburnstudio/home",
