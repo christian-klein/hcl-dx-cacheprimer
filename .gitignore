@@ -1,0 +1,8 @@
+chromedriver.exe
+venv
+.vscode
+chromedriver_linux64.zip
+chromedriver_mac64.zip
+chromedriver_win32.zip
+chromedriver
+google-chrome-stable_current_amd64.deb

@@ -1,0 +1,28 @@
+{
+    "retries": "5",
+    "wait": "2",
+    "protocol": "https",
+    "url": "porta.cklein.us",
+    "path": "/wps/portal",
+    "pages": [
+        "/woodburnstudio/home",
+        "/woodburnstudio/our-exhibitions",
+        "/woodburnstudio/our-products",
+        "/our-products/product%2001",
+        "/our-products/product%2002",
+        "/our-products/product%2003",
+        "/our-products/product%2004",
+        "/our-products/product%2005",
+        "/our-products/product%2006",
+        "/our-products/product%2007",
+        "/our-products/product%2008",
+        "/woodburnstudio/our-projects",
+        "/woodburnstudio/our-projects/projects/project01",
+        "/woodburnstudio/our-projects/projects/project02",
+        "/woodburnstudio/our-projects/projects/project03",
+        "/woodburnstudio/our-projects/projects/project04",
+        "/woodburnstudio/our-blog",
+        "/woodburnstudio/contact-us",
+        "/woodburnstudio/about-us"
+    ]
+}
