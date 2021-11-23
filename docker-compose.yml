@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    hostname: chrome
+    privileged: true
+    shm_size: 2g
+    ports:
+      - 4444:4444
+      - 7900:7900
+  hcldxcacheprimer:
+    image: hcldxcacheprimer
+    container_name: hcl-dx-cacheprimer
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+    - ./:/app
+    environment:
+    - RETRIES=5
+    - WAIT=2
+    - PROTOCOL=https
+    - URL=portal.cklein.us
+    - PREFIX=/wps/portal
+    - PAGES="/woodburnstudio/home","/woodburnstudio/our-exhibitions","/woodburnstudio/our-products","/our-products/product%2001","/our-products/product%2002","/our-products/product%2003","/our-products/product%2004","/our-products/product%2005","/our-products/product%2006","/our-products/product%2007","/our-products/product%2008","/woodburnstudio/our-projects","/woodburnstudio/our-projects/projects/project01","/woodburnstudio/our-projects/projects/project02","/woodburnstudio/our-projects/projects/project03","/woodburnstudio/our-projects/projects/project04","/woodburnstudio/our-blog","/woodburnstudio/contact-us","/woodburnstudio/about-us"
+    depends_on:
+      - chrome
+    # env_file:
+    #   - .env_sample

@@ -4,93 +4,35 @@ This utility will check if the server is up and responding with a code lower tha
 This approach can also be used as a baseline for Selenium based testing.
 
 ## Usage: 
-Create or edit config.json in same directory
+Configure using environment variables to support easier docker deployments. Create or set the following environment variables:
 Structure:
 ```
- {
-     "retries": "5",            <--- How often to try. Set to 0 to go forever
-     "wait": "2",               <--- in seconds
-     "protocol": "http",        <--- Protocol
-     "url": "localhost:10039",  <--- URL, including port if needed
-     "path": "/wps/portal",     <--- Path to portal
-     "pages": [
-         "/woodburnstudio/home",
-         ...
-     ]
- }
+RETRIES=5               <--- How often to try. Set to 0 to go forever
+WAIT=2                  <--- in seconds
+PROTOCOL="http"         <--- Protocol
+URL="localhost:10039"   <--- URL, including port if needed
+PREFIX="/wps/portal"    <--- Path to portal
+PAGES='"/woodburnstudio/home","/woodburnstudio/our-exhibitions","/woodburnstudio/our-products", ...
  ```
 
+## Installation/Run:
+This tool uses two containers, a custom build container that runs the python script to hit each page and a selenium/standalone-chrome container that is used to execute to hit each page.
 
-## Installation:
-This tool was written with Python 3.8.10 and the instructions assume a Linux machine, though it should work similarly on Mac and PC. 
+Install using `docker-compose up`
 
-### Install Python
-Install Python3 and apt install python3.x-venv and create a virtual environment named venv
-```
-python3 -m venv venv 
-```
-then
-```
-source venv/bin/activate 
-```
-You should now be see the virtual environment in front of your prompt.
-```
-(venv) ~/hcl-dx-cacheprimer$ python --version
-Python 3.8.10
-(venv) ~/hcl-dx-cacheprimer$
-```
-### Install Chrome.
+To see the output use `docker-compose logs`. You should see the chrome container start, followed by the Cache Primer executing.
 
 ```
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
-sudo apt install ./google-chrome-stable_current_amd64.deb
-```
-
-### Install Chromedriver
-Next, download and extract the appropriate chromedriver from https://chromedriver.chromium.org/ to this directory.
-```
-(venv) ~/GitHub/hcl-dx-cacheprimer$ ll
-total 20504
-drwxr-xr-x  5 cdk2128 cdk2128     4096 Nov 19 20:14 ./
-drwxr-xr-x 20 cdk2128 cdk2128     4096 Nov 16 20:37 ../
-drwxr-xr-x  7 cdk2128 cdk2128     4096 Nov 16 20:38 .git/
--rw-r--r--  1 cdk2128 cdk2128      153 Nov 19 20:05 .gitignore
-drwxr-xr-x  2 cdk2128 cdk2128     4096 Nov 17 16:28 .vscode/
--rw-r--r--  1 cdk2128 cdk2128     1696 Nov 19 20:13 README.md
--rw-r--r--  1 cdk2128 cdk2128     2585 Nov 19 20:01 app.py
--rwxr-xr-x  1 cdk2128 cdk2128 20952448 Nov 10 17:40 chromedriver*
--rw-r--r--  1 cdk2128 cdk2128      947 Nov 19 19:55 config.json
--rw-r--r--  1 cdk2128 cdk2128       29 Nov 18 14:40 requirements.txt
-drwxr-xr-x  6 cdk2128 cdk2128     4096 Nov 16 20:52 venv/
-(venv) ~/GitHub/hcl-dx-cacheprimer$ 
-```
-
-Install `xvfb libglib2.0-0 libnss3 libgconf-2-4 libfontconfig1` if `chromedriver --version` throws errors.
-
-``` 
-~/GitHub/hcl-dx-cacheprimer$ chromedriver --version 
-ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947})
-```
-
-If this does not resolve the issue, run `chromedriver --version` to see missing dependencies and install them using apt-cache search.
-
-Install Python requirements using 
-```
-pip install -r ./requirements.txt
-```
-
-Now you can run the application.
-
-```
-(venv) ~/hcl-dx-cacheprimer$ python app.py
-*************** Cache Primer ***************
- Target Server: http://localhost:10039/wps/portal
- Retries: 5 Every: 2.0s
---------------------------------------------
-http://localhost:10039/wps/portal/woodburnstudio/home/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1Mgo31wwkpiAJKG-AAjgZA_VFgJaaBlu4eRiZG_u5mji5AE9w9LB0NAgwMLAygCvCYUZAbYZDpqKgIALEKk_E!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
-http://localhost:10039/wps/portal/woodburnstudio/our-exhibitions/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1MHA31w8EKTAMt3T2MTIz83c0cXYAK3D0sHQ0CDAwsDPSjiNFvgAM4Eqkfj4Io_MaH60eBleDzASEzCnJDQyMMMh0BL6GB_g!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
+hcl-dx-cacheprimer  | *************** Cache Primer ***************
+hcl-dx-cacheprimer  |  Target Server: http://localhost:10039/wps/portal
+hcl-dx-cacheprimer  |  Retries: 5 Every: 2.0s
+hcl-dx-cacheprimer  | --------------------------------------------
+hcl-dx-cacheprimer  | Page: ,http://localhost:10039/wps/portal/woodburnstudio/home
+hcl-dx-cacheprimer  | ,http://localhost:10039/wps/portal/woodburnstudio/home/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1Mgo31wwkpiAJKG-AAjgZA_VFgJaaBlu4eRiZG_u5mji5AE9w9LB0NAgwMLAygCvCYUZAbYZDpqKgIALEKk_E!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
+hcl-dx-cacheprimer  | Page: ,http://localhost:10039/wps/portal/woodburnstudio/our-exhibitions
+hcl-dx-cacheprimer  | ,http://localhost:10039/wps/portal/woodburnstudio/our-exhibitions/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1MHA31w8EKTAMt3T2MTIz83c0cXYAK3D0sHQ0CDAwsDPSjiNFvgAM4Eqkfj4Io_MaH60eBleDzASEzCnJDQyMMMh0BL6GB_g!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
 ...
-http://localhost:10039/wps/portal/woodburnstudio/about-us/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1MXAz0w8EKTAMt3T2MTIz83c0cXYAK3D0sHQ0CDAwsDPSjiNFvgAM4Eqkfj4Io_MaH60eBleDzASEzCnJDQyMMMh0BEtV0xw!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
-(venv) ~/hcl-dx-cacheprimer$
+hcl-dx-cacheprimer  | Page: ,http://localhost:10039/wps/portal/woodburnstudio/about-us
+hcl-dx-cacheprimer  | ,http://localhost:10039/wps/portal/woodburnstudio/about-us/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizT1c3N0NDQwD_N3cLQwCzVy9vf2NAg1MXAz0w8EKTAMt3T2MTIz83c0cXYAK3D0sHQ0CDAwsDPSjiNFvgAM4Eqkfj4Io_MaH60eBleDzASEzCnJDQyMMMh0BEtV0xw!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/
+hcl-dx-cacheprimer  | Finished
 ```
